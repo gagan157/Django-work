@@ -1,0 +1,100 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        #back{
+            text-decoration: none;
+            border: 1px solid white;
+            border-radius: 10px;
+            background-color: rgb(53, 99, 8);            
+            padding: 2px 17px;
+            color: white;
+            margin: 0px 0px 0 102px;
+           
+        }
+        .backlink{
+            margin: 0px 0px 8px 0px;
+        }
+        #back:hover{
+            background-color: rgb(11, 189, 189);
+        }
+        div{
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+        #required{
+            color: red;
+        }
+        #data{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        button {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 296px;
+            border: 1px solid rgb(253, 253, 253);
+            background-color: #4CAF50;
+            border-radius: 4px;
+            cursor: pointer;
+            color: aliceblue;
+        }
+        button:hover{
+            background-color: seagreen;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center">Contact Us</h1>
+    <p class="backlink"><a href="/" id="back">Back</a></p>
+    
+    <div>
+        <!-- csrf  =(cross site request forgery) -->
+        <form action="/thanks" method="POST" style="padding: 30px;margin: 10;"> {% csrf_token %}
+
+            <label>Fullname</label>
+            <input name="name" placeholder="Your name.." type="text" id="data"><br>
+
+
+            <label>Email<span id="required">*</span></label>
+            <input required name="email" placeholder="abc@abc.com" type="email" id="data"><br>
+           
+            
+            <label>Message</label>
+            <textarea placeholder=" Your msg.." name="text" id="data" cols="30" rows="10"></textarea>
+            <p><input required type="checkbox" name="check" id="">Read Terms & Condition<span id="required">*</span></p>
+            <p><input type="checkbox" name="checkp" id="">Remove puctuation</p>
+            <p><input type="checkbox" name="checkl" id="">Remove newline</p>
+            <p><input type="checkbox" name="checks" id="">Remove Extra Space</p>
+            <p><input type="checkbox" name="checku" id="">UpperCase</p>
+
+            <button type="submit" value="Submit">Submit</button>
+
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

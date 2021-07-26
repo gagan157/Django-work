@@ -1,0 +1,326 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mysite</title>
+    <style>
+        body {
+            display: block;
+            margin: 0px;
+            margin-top: 10px;
+        }
+
+        .background {
+            height: 30vw;
+            min-height: 100px;
+
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 99vw;
+            background-position: top center;
+
+
+
+        }
+
+        .header {
+            color: white;
+            position: sticky;
+            right: 15vw;
+            top: 11vw;
+            font-size: 6vw;
+            text-align: center;
+            text-shadow: 2px 2px black;
+            margin-bottom: 0;
+
+        }
+
+        .navbar {
+            background-color: black;
+            border-radius: 5px;
+            /* overflow: hidden;            */
+            display: flex;
+
+        }
+
+        .logsin {
+            margin-left: auto;
+        }
+
+        .navposition {
+            position: sticky;
+            top: 0;
+
+        }
+
+        /* .navbar:hover{
+            border: 9px solid white;          
+                       
+            /* margin: 0px 10px 0px 10px; 
+            border-radius: 5px;
+            animation-name: sample; 
+            animation-duration: 9s;   
+            animation-iteration-count:infinite;
+            animation-direction: alternate;
+            animation-delay: 0s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-in;        
+        }
+        @keyframes sample {
+            /* 0%   {border-left-color:violet; left:200px; top:200px;} 
+            25%  {border-top-color: yellow; left:200px; top:0px;}
+            50%  {border-right-color: coral; left:200px; top:200px;}
+            75%  {border-bottom-color: green; left:0px; top:200px;}
+            100% {border-left-color: violet; left:200px; top:200px;} 
+            
+        }*/
+        .navbar a {
+            display: inline-block;
+            /* text-align: center; */
+            text-decoration: none;
+            color: white;
+            padding: 10px 30px 10px 30px;
+            border-radius: 5px;
+            font-size: medium;
+            font-weight: bold;
+
+
+        }
+
+        .navbar a:hover {
+            background-color: coral;
+            color: black;
+            border-radius: 5px;
+        }
+
+        .main {
+            margin: 10px;
+            padding: 10px;
+
+        }
+
+        /* 700px ke niche ke device  */
+        @media screen and (max-width:700px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                background-color: rgb(79, 77, 173);
+
+            }
+
+            .logsin {
+                margin-left: 0;
+            }
+
+            .navbar a {
+
+                text-decoration: none;
+                color: white;
+                letter-spacing: 0.5vh;
+                border: 0.1px solid black;
+
+            }
+
+            .navbar a:hover {
+                background-color: coral;
+                color: black;
+                border-radius: 5px;
+
+            }
+
+            .navposition {
+                position: static;
+
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+
+        <h1 class="header">My site</h1>
+    </div>
+    <div class="navposition">
+        <nav class="navbar">
+            <a href="">Home</a>
+            <a href="/about">About</a>
+            <a href="/link">Learning WebSites</a>
+            <a href="/contact">Contact Us</a>
+            <a class="logsin" href="">Login/singup</a>
+        </nav>
+    </div>
+    <hr>
+    <div class="main">
+        <p><img src="{% static 'woman.jpg' %}" alt="woman"></p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            v
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            v
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nam maxime iure pariatur temporibus amet,
+            adipisci illo dolores a recusandae doloribus, non porro, in voluptate ad aut tempore quo qui molestias.
+            Ipsam, eum? Ducimus eaque fuga reprehenderit itaque alias esse dolorem unde odit quos nam temporibus ipsa
+            sequi omnis adipisci molestiae, non soluta architecto quibusdam. Minus fuga eligendi, provident placeat sit
+            tempore numquam saepe sapiente eius eaque hic tenetur nobis, est nulla officia aliquam soluta id maxime
+            nihil ut officiis? Dolores quod ut, nam, voluptatum excepturi ducimus,
+            minus reprehenderit vitae debitis vero magnam porro odit nobis earum atque accusamus deserunt!
+
+        </p>
+
+    </div>
+</body>
+
+</html>
