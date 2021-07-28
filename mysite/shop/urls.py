@@ -23,5 +23,12 @@ from . import views
 
 urlpatterns = [
       path("",views.home,name="home"),
+      path("about",views.about,name="about_us"),
+      path("contact",views.contact,name="contact"),
+      path("tracker",views.tracker,name="tracker"),
+      path("productviews",views.productviews,name="prodectviews"),
+      path("search",views.search,name="search"),
+      path("checkout",views.checkout,name="checkout"),
+
      
 ]
