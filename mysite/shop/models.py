@@ -14,3 +14,15 @@ class Product(models.Model):
 
     def __str__(self) :
         return f"{self.product_name}"
+
+
+class slider(models.Model):
+    slider_id= models.AutoField
+    slider_image = models.ImageField(upload_to="shop/ban",default="")
+    slider_name = models.CharField(max_length=100,default="")
+    slider_label=models.CharField(max_length=100)
+    slider_label_sub = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.slider_name
+
