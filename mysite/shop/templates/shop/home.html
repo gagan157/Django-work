@@ -104,7 +104,7 @@
 {% for product,range,nslides in allprod  %}
 
 <div class="container mt-5 child-d">
-  <h2 style="text-align: center" class="allbod">{{product.0.category}}</h2>
+  <h2 style="text-align: center" class="allbod">{{product.0.category|upper}}</h2>
 </div>
 
 <!-- cards with slides-->
@@ -114,6 +114,7 @@
 
 <div id="carouselExampleControlsNoTouching{{forloop.counter}}" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
   <div class="carousel-indicators">
+
     {% for i in range %} 
      
     <button type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide-to={{i}}  class=" {% if forloop.counter0 == 0 %} active {% endif %}" aria-current="true" aria-label="Slide 1"></button>
@@ -123,7 +124,9 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item a  active ">
-      {% for i in product|slice:"0:" %}
+
+      {% for i in product %}
+
       <div class="col">
         <div class="card" style="width: 18rem;">
           <img src="/media/{{i.image}}" class="card-img-top " alt="...">

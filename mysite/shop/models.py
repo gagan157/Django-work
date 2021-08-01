@@ -10,10 +10,17 @@ class Product(models.Model):
     desc = models.CharField(max_length=300)
     pub_date = models.DateField()
     image= models.ImageField(upload_to="shop/img",default="")
-
+        
+    def save(self, *args, **kwargs):
+        self.product_name = self.product_name.upper()
+        return super(Product, self).save(*args, **kwargs)
 
     def __str__(self) :
-        return f"{self.product_name}"
+        self.category = self.category.upper()
+        return f"{self.product_name.upper()}"
+
+    
+
 
 
 class slider(models.Model):

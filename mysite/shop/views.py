@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from shop.models import Product,slider
-from math import ceil
+from math import ceil, prod
 # Create your views here.
 
 def home(request):  
@@ -10,19 +10,23 @@ def home(request):
     slideo=slider.objects.all()
     # n=len(product)    
     # nSlides= n//4 + ceil((n/4) - (n//4))
-    
+
     #mutiple list sorting by category
     allprod=[]
     catproduct=Product.objects.values('category')
+    # print(catproduct)
     # for item in catproduct:
     #     cats={item['category']}
-    cats={item['category']for item in catproduct}
+    cats={item['category'] for item in catproduct}
+    cats=sorted(cats)
+    
+    
     for cat in cats:
-        product=Product.objects.filter(category=cat)
+        product=Product.objects.filter(category=cat).order_by('product_name')       
         n=len(product)    
         nSlides= n//4 + ceil((n/4) - (n//4))
         allprod.append([product,range(nSlides),nSlides])
-
+    # print(f"allprodud= {allprod}")
 
 
     param={"allprod":allprod,"slideo":slideo}
