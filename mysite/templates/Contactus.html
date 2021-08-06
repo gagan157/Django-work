@@ -32,7 +32,7 @@
         #required{
             color: red;
         }
-        #data{
+        .data{
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -73,15 +73,16 @@
         <form action="/thanks" method="POST" style="padding: 30px;margin: 10;"> {% csrf_token %}
 
             <label>Fullname</label>
-            <input name="name" placeholder="Your name.." type="text" id="data"><br>
+            <input name="name" class="data" placeholder="Your name.." type="text" id="namedata"><br>
 
 
             <label>Email<span id="required">*</span></label>
-            <input required name="email" placeholder="abc@abc.com" type="email" id="data"><br>
+            <input required name="email" class="data" placeholder="abc@abc.com" type="email" id="emaildata"><br>
            
             
             <label>Message</label>
-            <textarea placeholder=" Your msg.." name="text" id="data" cols="30" rows="10"></textarea>
+            <textarea oninput="countWord()" placeholder=" Your msg.." name="text" class="data" id="msgdata" cols="30" rows="10"></textarea>
+            <p id="count">Count: <span id="count"></span> </p>
             <p><input required type="checkbox" name="check" id="">Read Terms & Condition<span id="required">*</span></p>
             <p><input type="checkbox" name="checkp" id="">Remove puctuation</p>
             <p><input type="checkbox" name="checkl" id="">Remove newline</p>
@@ -97,5 +98,27 @@
 
 
 </body>
+<script>
+    console.log('heloo')
+function countWord() {
+    let tex = document.getElementById('msgdata').value;
+    var count=0
+    var split = tex.split('');
+    for (var i = 0; i < split.length; i++) {
+        if (split[i] != "") {
+                    count += 1;
+                    
+                }
+            
+    }     
+   let chcount = document.querySelector('span#count');
+   chcount.innerHTML=count
+   
+   console.log(chcount)
+   
+}
 
+
+
+</script>
 </html>
