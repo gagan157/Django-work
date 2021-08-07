@@ -1,3 +1,4 @@
+{% load static %}
 <html lang="en">
 
 <head>
@@ -5,63 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
-    <style>
-        #back{
-            text-decoration: none;
-            border: 1px solid white;
-            border-radius: 10px;
-            background-color: rgb(53, 99, 8);            
-            padding: 2px 17px;
-            color: white;
-            margin: 0px 0px 0 102px;
-           
-        }
-        .backlink{
-            margin: 0px 0px 8px 0px;
-        }
-        #back:hover{
-            background-color: rgb(11, 189, 189);
-        }
-        div{
-            border-radius: 5px;
-            background-color: #f2f2f2;
-            padding: 20px;
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-        #required{
-            color: red;
-        }
-        .data{
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        label {
-            font-weight: bold;
-            font-size: 17px;
-        }
-
-        button {
-            width: 50%;
-            padding: 12px 20px;
-            margin: 8px 296px;
-            border: 1px solid rgb(253, 253, 253);
-            background-color: #4CAF50;
-            border-radius: 4px;
-            cursor: pointer;
-            color: aliceblue;
-        }
-        button:hover{
-            background-color: seagreen;
-            color: black;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'mysite/css/mycss.css' %}">
+    <script src="{% static 'mysite/js/myscript.js' %}"></script>
 </head>
 
 <body>
@@ -74,7 +20,7 @@
 
             <label>Fullname</label>
             <input name="name" class="data" placeholder="Your name.." type="text" id="namedata"><br>
-
+            
 
             <label>Email<span id="required">*</span></label>
             <input required name="email" class="data" placeholder="abc@abc.com" type="email" id="emaildata"><br>
@@ -98,27 +44,4 @@
 
 
 </body>
-<script>
-    console.log('heloo')
-function countWord() {
-    let tex = document.getElementById('msgdata').value;
-    var count=0
-    var split = tex.split('');
-    for (var i = 0; i < split.length; i++) {
-        if (split[i] != "") {
-                    count += 1;
-                    
-                }
-            
-    }     
-   let chcount = document.querySelector('span#count');
-   chcount.innerHTML=count
-   
-   console.log(chcount)
-   
-}
-
-
-
-</script>
 </html>

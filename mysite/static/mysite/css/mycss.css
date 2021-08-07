@@ -1,0 +1,56 @@
+#back{
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: rgb(53, 99, 8);            
+    padding: 2px 17px;
+    color: white;
+    margin: 0px 0px 0 102px;
+   
+}
+.backlink{
+    margin: 0px 0px 8px 0px;
+    
+}
+#back:hover{
+    background-color: rgb(11, 189, 189);
+}
+div{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+#required{
+    color: red;
+}
+.data{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+button {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 296px;
+    border: 1px solid rgb(253, 253, 253);
+    background-color: #4CAF50;
+    border-radius: 4px;
+    cursor: pointer;
+    color: aliceblue;
+}
+button:hover{
+    background-color: seagreen;
+    color: black;
+}

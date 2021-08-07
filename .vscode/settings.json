@@ -2,6 +2,7 @@
     "editor.mouseWheelZoom": true,
     "django.snippets.exclude": [
     
+    
         "cms",
         "wagtail"
     ],
