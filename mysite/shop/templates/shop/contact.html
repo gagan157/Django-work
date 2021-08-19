@@ -1,2 +1,70 @@
 {% extends 'shop/basic.html' %} 
-{% block title %}Contact{% endblock%}
+{% block title %}Contact{% endblock%} 
+{% block body %}
+<div class="container my-3">
+  <form action="/shop/contact" method="POST"> {% csrf_token %}
+  <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Full Name</label>
+      <input type="text" class="form-control" name='name' placeholder="Full name">
+      </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        name='email'
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <div id="emailHelp" class="form-text">
+        We'll never share your email with anyone else.
+      </div>
+    </div>
+    <fieldset class="border p-2 form-group">
+      <legend class="control-label customer-legend pl-1">Gender</legend>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="gender"
+          value="Male"
+          id="flexRadioDisabled"
+        />
+        <label class="form-check-label" for="flexRadioDisabled">
+          Male
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="gender"
+          value="Female"
+          id="flexRadioCheckedDisabled"
+        />
+        <label class="form-check-label" for="flexRadioCheckedDisabled">
+          Female
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="gender"
+          value="Other"
+          id="flexRadioCheckedDisabled"
+        />
+        <label class="form-check-label" for="flexRadioCheckedDisabled">
+          Other
+        </label>
+      </div>
+    </fieldset>
+    <div class="mb-3 my-3">
+    <label for="exampleFormControlTextarea1" class="form-label">What can i help you?</label>
+    <textarea class="form-control" name='textarea' id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary my-3">Submit</button>
+  </form>
+</div>
+
+{% endblock body %}

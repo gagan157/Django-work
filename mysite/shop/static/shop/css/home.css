@@ -1,0 +1,43 @@
+.card-imgs{ 
+    width: auto; 
+    height: 200px; 
+    object-fit: cover; 
+    transition:width,height 2s; } 
+   
+   .card{ width:18rem; 
+     margin: auto; 
+     cursor: pointer; 
+     transition: background-color 2s ; }
+   .card:hover{ 
+     background-color: rgba(20, 20, 228, 0.4); } 
+   .allbod{ width:max-content; } 
+   .child-d{ border-bottom: solid blueviolet; 
+     border-bottom-width:4px; width: 0; 
+     animation: fit 5s; 
+     animation-fill-mode: forwards; } 
+   .carousel-item-next, .carousel-item-prev, .carousel-item.active {
+       display: inline-flex;
+      
+   }
+   .card-img, .card-img-top {
+     margin: auto;
+     height: 15vw;
+ }
+ 
+ .carousel-indicators {
+   margin-bottom: -2rem;
+ }
+ .carousel-dark .carousel-indicators [data-bs-target] {
+   background-color: rgb(138 44 226);
+ }
+ .carousel-control-next, .carousel-control-prev {
+  width: 3%;
+ }
+ .card-body{
+   text-align: center;
+ }
+ 
+     @keyframes fit { 
+       from {width: 0px; } 
+       to {width: 210px; } 
+     } 

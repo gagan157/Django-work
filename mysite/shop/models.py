@@ -1,3 +1,4 @@
+
 from django.db import models
 
 # Create your models here.
@@ -32,4 +33,16 @@ class slider(models.Model):
 
     def __str__(self):
         return self.slider_name
+
+class Contact(models.Model):
+    msg_id= models.AutoField(primary_key=True)    
+    full_name = models.CharField(max_length=500,default="")
+    Email=models.CharField(max_length=500,default='')
+    Gender = models.CharField(max_length=100,default='')
+    Message = models.CharField(max_length=1000,default='')
+    
+    
+
+    def __str__(self):
+        return self.full_name      
 
