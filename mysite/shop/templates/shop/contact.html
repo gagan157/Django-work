@@ -1,19 +1,25 @@
 {% extends 'shop/basic.html' %} 
+{%load static%}
 {% block title %}Contact{% endblock%} 
+{% block css %}
+ <link rel="stylesheet" href="{% static 'shop/css/contact.css' %}">
+{% endblock css%}
 {% block body %}
+
 <div class="container my-3">
   <form action="/shop/contact" method="POST"> {% csrf_token %}
   <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Full Name</label>
-      <input type="text" class="form-control" name='name' placeholder="Full name">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-control inp" name='name' id='name' placeholder="Full name">
       </div>
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <label class="form-label">Email address</label>
       <input
+        required
         type="email"
         name='email'
-        class="form-control"
-        id="exampleInputEmail1"
+        class="form-control inp"
+        id="Email"
         aria-describedby="emailHelp"
       />
       <div id="emailHelp" class="form-text">
@@ -24,47 +30,53 @@
       <legend class="control-label customer-legend pl-1">Gender</legend>
       <div class="form-check">
         <input
-          class="form-check-input"
+          class="form-check-input inp"
           type="radio"
           name="gender"
           value="Male"
-          id="flexRadioDisabled"
+          id="male"
         />
-        <label class="form-check-label" for="flexRadioDisabled">
+        <label class="form-check-label">
           Male
         </label>
       </div>
       <div class="form-check">
         <input
-          class="form-check-input"
+          class="form-check-input inp"
           type="radio"
           name="gender"
           value="Female"
-          id="flexRadioCheckedDisabled"
+          id="female"
         />
-        <label class="form-check-label" for="flexRadioCheckedDisabled">
+        <label class="form-check-label">
           Female
         </label>
       </div>
       <div class="form-check">
         <input
-          class="form-check-input"
+          class="form-check-input inp"
           type="radio"
           name="gender"
           value="Other"
-          id="flexRadioCheckedDisabled"
+          id="other"
         />
-        <label class="form-check-label" for="flexRadioCheckedDisabled">
+        <label class="form-check-label">
           Other
         </label>
       </div>
     </fieldset>
     <div class="mb-3 my-3">
-    <label for="exampleFormControlTextarea1" class="form-label">What can i help you?</label>
-    <textarea class="form-control" name='textarea' id="exampleFormControlTextarea1" rows="3"></textarea>
+    <label class="form-label">What can i help you?</label>
+    <textarea class="form-control inp" name='textarea' id="textarea" rows="3"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary my-3">Submit</button>
-  </form>
+    <button type="submit" id="submitbtn" class="btn btn-primary my-3">Submit</button>
+  </form>  
 </div>
+<div><h4 class="sucornot"><span id="sucess"></span><span id="nosucess"></span></h4></div>
 
-{% endblock body %}
+
+{% block script %}
+<script src="{% static 'shop/js/contact.js' %}"/>
+{%endblock %}
+
+{% endblock %}

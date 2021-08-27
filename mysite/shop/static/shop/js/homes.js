@@ -1,4 +1,4 @@
-console.log('myscript working');
+console.log('Home');
 
 function clickbtn() {
     let getcart = document.querySelectorAll('.btncart');
@@ -15,7 +15,7 @@ if(localStorage.getItem('cart')==null){
 else{
     cart=JSON.parse(localStorage.getItem('cart'))
     updatecart(cart)
-    cartitem(cart)
+    cartitem()
     
 }
 var show=0
@@ -48,56 +48,42 @@ function addcart() {
     // let navbar = document.getElementById('navcart').innerHTML= Object.keys(cart).length
    
     updatecart(cart)
-    cartitem(cart)
+    cartitem()
 }
 
 
-// $(document).ready(function(){
-//     $('#popcart').popover('hide');  
-//     $('#popcart').click(function(){
-//         $('#popcart').popover('show');}); 
-// });
- 
-$(function () {
-    $('[data-toggle="popover"]').popover({
-        delay: {
-            show: 100
-        },
-         html: true,
-         sanitize: false,
-         
-    })
-})   
-function cartitem(cart) {   
-    var popStr = "";
-    popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";
-    cart.forEach(function(element) {
-        for(let key in element){
-            // console.log(key,allitem[key])
-            // let prid=document.querySelector(`#${key}`)
-            let id = key.slice(2)
 
-            let name=document.querySelector(`#name${id}`).innerHTML
-            let price=document.querySelector(`#price${id}`).innerHTML
-            let match = price.match(/(\d+)/);
-            let totalprice = Number(match[0])
-            
-                popStr = popStr + `<h6><h5>${name}</h5>
-                <button class="btn btn-primary minus" id="minus${id}">-</button>
-                <span id="val${id}"> ${element[`pr${id}`]} </span>   
-                <button class="btn btn-primary plus" id="plus${id}">+</button>                   
-                ${totalprice*element[key]}Rps.</h6>`
-                
-        }
-    })
-    popStr = popStr + "</div>" 
-    popStr = popStr + "<button class='btn btn-primary'>Checkout</button>" 
-    
+function cartitem() {    
+
+
+allitem = JSON.parse(localStorage.getItem('cart'))
+
+var htmlte=''
+allitem.forEach(function(element) {
+    for(let key in element){
+        // console.log(key,allitem[key])
+        // let prid=document.querySelector(`#${key}`)
+        let id = key.slice(2)
+
+        let name=document.querySelector(`#name${id}`).innerText
+        let price=document.querySelector(`#price${id}`).innerText
+        
+            htmlte+= `<h6>${name}</h6> 
+            <button>-</button>
+            <span id='val${id}'> ${element[key]}Qty </span>   
+            <button>click</button> <p>${price}</p>`
+    }
+})
+    htmlte = htmlte + "<h2>roma</h2>"
     document.querySelector('#popcart').setAttribute('title','You Items')
-    document.querySelector('#popcart').setAttribute('data-bs-content',popStr)
-    updatecart(cart)
-}
+    document.querySelector('#popcart').setAttribute('data-bs-content',htmlte)
 
+}
+$(document).ready(function(){
+    $('#popcart').popover('hide');  
+    $('#popcart').click(function(){
+        $('#popcart').popover('show');}); 
+});
 
 
 
@@ -115,17 +101,16 @@ function cartitem(cart) {
 
 
 function updatecart(cart) {
-    
     var sum=0
     cart.forEach(function(element,index){
         for(let key in element){       
             let id = key.slice(2)
-            sum = sum+element[key]  
+            sum = sum+element[key] 
+            
             if(element[key]<1){
                 document.getElementById(`btn${id}`).innerHTML=`
                 <button class="btn btn-primary btncart" id="pr${id}">Add Cart</button>
                 ` 
-                
                 clickbtn()
                 
                 // console.log('key:',key,'ele:',Object.keys(element)[0])
@@ -133,7 +118,7 @@ function updatecart(cart) {
                     cart.splice(index,1)
                     // localStorage.setItem("cart", JSON.stringify(cart));
                     updatecart(cart)
-                    cartitem(cart)
+                    cartitem()
                 }
             }
             else{
@@ -152,7 +137,7 @@ function updatecart(cart) {
                     document.getElementById(`val${id}`).innerText=element[key]                
                     // console.log(cart[key],'click minius')
                     updatecart(cart)
-                    cartitem(cart)
+                    cartitem()
                 
                 }
 
@@ -164,7 +149,7 @@ function updatecart(cart) {
                     document.getElementById(`val${id}`).innerText=element[key]              
                     // console.log(cart[key],'click minius')
                     updatecart(cart)
-                    cartitem(cart)
+                    cartitem()
                 }
             }
         }
@@ -178,6 +163,8 @@ function updatecart(cart) {
 }
 
 
+ 
+    
     
 
 
