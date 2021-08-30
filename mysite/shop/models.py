@@ -46,3 +46,25 @@ class Contact(models.Model):
     def __str__(self):
         return self.full_name      
 
+
+class Orders(models.Model):
+    msg_id= models.AutoField(primary_key=True)
+    Trackid = models.CharField(max_length=500,default="") 
+    Itemjson =  models.CharField(max_length=10000,default="") 
+    First_name = models.CharField(max_length=500,default="")
+    Last_name = models.CharField(max_length=500,default="")
+    Phone = models.CharField(max_length=1000,default='')
+    Email=models.CharField(max_length=1000,default='')
+    Address = models.CharField(max_length=1000,default='')
+    Address2 = models.CharField(max_length=1000,default='')
+    Country = models.CharField(max_length=1000,default='')
+    State = models.CharField(max_length=1000,default='')
+    Pin_code = models.CharField(max_length=1000,default='')
+    
+    
+    
+
+    def __str__(self):
+        if self.First_name=="":
+            self.First_name='No Name'
+        return self.First_name+" "+self.Last_name 

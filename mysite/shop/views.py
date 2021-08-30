@@ -1,7 +1,12 @@
+
+from django.db.models.expressions import ExpressionList
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.http import HttpResponse
-from shop.models import Product,slider,Contact
+from shop.models import Product,slider,Contact,Orders
 from math import ceil, prod
+import random
+
 # Create your views here.
 
 def home(request):  
@@ -39,22 +44,33 @@ def contact(request):
         email = request.POST.get('email','')
         area = request.POST.get('textarea','')
         gender = request.POST.get('gender','')
-        print(name,email,area)
+        
         contact= Contact(full_name=name,Email=email,Gender=gender, Message=area)
         contact.save()
-        
-    
-
     return render(request,'shop/contact.html')
 
 def about(request):
     return render(request,'shop/about.html')
 
 def tracker(request):
+    
     return render(request,'shop/tracker.html')
 
+def track_order(request):
+    if request.method=='POST':
+        trkid = request.POST.get('trid','')
+        order = Orders.objects.filter(Trackid=trkid)
+        # val= Orders.objects.values('Trackid')
+        # for id in val:       
+        #     data=id.get('Trackid') 
+        #     if trkid != data:
+        #         print('pass')
+        #         return render(request,'shop/tracker.html',{'order':order[0]})
+            
+    return render(request,'shop/trackorder.html',{'order':order[0]})
+
 def productviews(request,myid):
-    product = Product.objects.filter(id=myid)   
+    product = Product.objects.filter(id=myid) 
    
     return render(request,'shop/productviews.html',{'product':product[0]})
 
@@ -62,4 +78,29 @@ def search(request):
     return render(request,'shop/search.html')
 
 def checkout(request):
-    return render(request,'shop/checkout.html')                 
+    
+    
+    if request.method=='POST': 
+        trackid = random.randint(100,1000000)  
+        print('id',trackid)  
+        itemjson = request.POST.get('itemjson','') 
+        fname = request.POST.get('fname','')
+        lname = request.POST.get('lname','')
+        phone = request.POST.get('phone','')
+        email = request.POST.get('email','')
+        address = request.POST.get('address','')
+        address2 = request.POST.get('address2','')
+        country = request.POST.get('country','')
+        state = request.POST.get('state','')
+        pincode = request.POST.get('pincode','')
+        print(itemjson,fname)
+        orders= Orders(Trackid=trackid,Itemjson=itemjson,First_name=fname,Last_name=lname,Email=email,Phone=phone,Address=address,Address2=address2,Country=country,State=state,Pin_code=pincode)
+        orders.save()
+        param={"Trackid":trackid}
+        # return HttpResponseRedirect('')
+        return render(request,'shop/tracker.html',param)
+
+    else:    
+        return render(request,'shop/checkout.html')
+        
+                   

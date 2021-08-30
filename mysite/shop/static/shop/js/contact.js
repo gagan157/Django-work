@@ -12,6 +12,3 @@ function sucesstxt() {
     
 }
 
-let all=document.getElementById('exampleInputEmail1').values
-
-console.log(all,'all')
