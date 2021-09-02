@@ -1,0 +1,13 @@
+.badge{
+    font-size: larger;
+}
+.timestamp{
+    float: right;
+}
+.clspg{
+    display: inline-block;
+}
+#wrongtrkid{
+    text-align: center;
+    
+}

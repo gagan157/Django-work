@@ -1,6 +1,7 @@
 
 from django.db import models
-
+from django.utils import timezone
+from datetime import datetime
 # Create your models here.
 class Product(models.Model):
     product_id = models.AutoField
@@ -61,10 +62,55 @@ class Orders(models.Model):
     State = models.CharField(max_length=1000,default='')
     Pin_code = models.CharField(max_length=1000,default='')
     
-    
-    
-
     def __str__(self):
         if self.First_name=="":
             self.First_name='No Name'
         return self.First_name+" "+self.Last_name 
+
+class Orders_update(models.Model):
+    choices='Choices'
+    Order_Today='ot'
+    Shipped_your_order ='Shipped your order'
+    Out_for_delivery="Out for delivery"
+    Arriving="Arriving"
+    order_CHOICES1 = [
+        (choices, 'Choices'),
+        (Shipped_your_order, 'Shipped your order'),
+           
+    ]
+    order_CHOICES2 = [
+        (choices, 'Choices'),
+        (Out_for_delivery, 'Out for delivery'),
+        
+    ]
+    order_CHOICES3 = [
+        (choices, 'Choices'),
+        (Arriving, 'Arriving'),
+        
+    ]
+    order_CHOICES4 = [
+        (choices, 'Choices'),
+        (Order_Today, 'Order Today'),
+        (Shipped_your_order, 'Shipped your order'),
+        (Out_for_delivery, 'Out for delivery'),
+        (Arriving, 'Arriving'),
+        
+    ]
+    msg_id= models.AutoField(primary_key=True)
+    Trackid = models.CharField(max_length=500,default="")
+    First_name = models.CharField(max_length=500,default="")
+    Last_name = models.CharField(max_length=500,default="") 
+    Today_order = models.CharField(max_length=5000,default="")
+    Today_date_time = models.DateTimeField(default=datetime.now)
+
+    shipped_order = models.CharField(max_length=20,choices=order_CHOICES1,default=choices) 
+    shipped_date_time = models.DateTimeField(default=datetime.now)
+
+    Out_for_delivery = models.CharField(max_length=20,choices=order_CHOICES2,default=choices) 
+    out_date_time = models.DateTimeField(default=datetime.now)
+
+    Arriving_order = models.CharField(max_length=20,choices=order_CHOICES3,default=choices) 
+    Arriving_date_time = models.DateTimeField(default=datetime.now)
+    
+    def __str__(self):
+        return self.First_name+" "+self.Trackid

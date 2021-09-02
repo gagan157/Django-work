@@ -1,28 +1,79 @@
 {% extends 'shop/basic.html' %} 
-{% block title %}Track Order{% endblock%} 
-{% block body %}
 {%load static%}
-<div class="container my-5">
+{% block title %}Track Order{% endblock%} 
+{% block css %}
+<link rel="stylesheet" href="{% static 'shop/css/trackorder.css' %}">
+{% endblock %}
+{% block body %}
+
+<div class="container my-5 righttrk">
   
-  <h5>Your Order Traking Id is ({{order.Trackid}}) </h5>
+  <h4>Your Order Traking Id is (<span id="trkoid">{{order.Trackid}}</span>) </h4>
   <ul class="list-group">
+    <h5 class="my-3"><strong>User Details</strong></h5>
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      First-Name
-      <span class="badge badge-primary badge-pill" style="color: blue;">{{order.First_name}}</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      Last-name
-      <span class="badge badge-primary badge-pill" style="color: blue;">{{order.Last_name}}</span>
+      Full name
+      <span class="badge badge-primary badge-pill" style="color: rgb(0, 0, 0);">{{order.First_name | capfirst}} {{order.Last_name}}</span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       Email
-      <span class="badge badge-primary badge-pill" style="color: blue;">{{order.Email}}</span>
+      <span class="badge badge-primary badge-pill" style="color: rgb(0, 0, 0);">{{order.Email}}</span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
+      Phone
+      <span class="badge badge-primary badge-pill" style="color: rgb(0, 0, 0);">{{order.Phone}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Payment Type
+      <span class="badge badge-primary badge-pill" style="color: rgb(0, 0, 0);">none</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center d-none">
       Itemjson
-      <span class="badge badge-primary badge-pill" style="color: blue;">{{order.Itemjson}}</span>
+      <span class="badge badge-primary badge-pill" id="itemstring" style="color: rgb(0, 0, 0);">{{order.Itemjson}}</span>
     </li>
   </ul>
+  <h5 class="my-3"><strong>Product Details</strong></h5>
+  <ol class="list-group list-group-numbered" id="olpd">
+    <!-- javascript content    -->
+  </ol>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-dark">
+      <b>Total</b>
+    <span style="float:right" id="totalpriceitem">totalprice</span>
+    </li>
+  </ul>
+  <h5 class="mt-4"><strong>Product Update Details</strong></h5>
+  <div class="list-group btngrp">
+          
+    
+    <button type="button" class="list-group-item list-group-item-action active my-1" aria-current="true" id="trkbtn1">
+      {{order_update.Today_order}} <span class="timestamp">{{order_update.Today_date_time}}</span> 
+    </button>
+    <button type="button" class="list-group-item list-group-item-action my-1  d-none" id="trkcls2"><span id="trkbtn2">{{order_update.shipped_order}}</span> <span class="timestamp">{{order_update.shipped_date_time}}</span></button>
+    <button type="button" class="list-group-item list-group-item-action my-1  d-none" id="trkcls3"><span id="trkbtn3">{{order_update.Out_for_delivery}}</span> <span class="timestamp">{{order_update.out_date_time}}</span></button> 
+    <button type="button" class="list-group-item list-group-item-action my-1  d-none" id="trkcls4"><span id="trkbtn4">{{order_update.Arriving_order}}</span> <span class="timestamp">{{order_update.Arriving_date_time}}</span></button>
+    <!-- <button type="button" class="list-group-item list-group-item-action disable my-3" disabled>A disabled button item <span class="timestamp">{{order_update.Arriving_date_time}}</span></button> -->
+    
+    
+  </div>
+  <div class="progress my-4">
+    <div class="progress-bar progress-bar-striped progress-bar-animated clspg" role="progressbar" id="btnpg" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style='width: 0%'>Progress <span id="sppg">0</span> </div>
+  </div>
 </div>
+<div class="container my-5 wrongclstrk d-none"><h1 id="wrongtrkid">Your Track id ({{trkid}}) is Wrong Please Enter correct tracking id</h1></div>
 
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'shop/js/trackorder.js' %}"/>
+    
+    
+    
+    
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  
+  {% endblock%}
 {% endblock %}
