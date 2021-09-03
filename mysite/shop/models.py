@@ -1,7 +1,7 @@
 
 from django.db import models
 from django.utils import timezone
-from datetime import datetime
+import datetime
 # Create your models here.
 class Product(models.Model):
     product_id = models.AutoField
@@ -49,7 +49,7 @@ class Contact(models.Model):
 
 
 class Orders(models.Model):
-    msg_id= models.AutoField(primary_key=True)
+    ord_id= models.AutoField(primary_key=True)
     Trackid = models.CharField(max_length=500,default="") 
     Itemjson =  models.CharField(max_length=10000,default="") 
     First_name = models.CharField(max_length=500,default="")
@@ -73,6 +73,7 @@ class Orders_update(models.Model):
     Shipped_your_order ='Shipped your order'
     Out_for_delivery="Out for delivery"
     Arriving="Arriving"
+    order_Delivered= 'order Delivered'
     order_CHOICES1 = [
         (choices, 'Choices'),
         (Shipped_your_order, 'Shipped your order'),
@@ -90,27 +91,28 @@ class Orders_update(models.Model):
     ]
     order_CHOICES4 = [
         (choices, 'Choices'),
-        (Order_Today, 'Order Today'),
-        (Shipped_your_order, 'Shipped your order'),
-        (Out_for_delivery, 'Out for delivery'),
-        (Arriving, 'Arriving'),
+        (order_Delivered, 'order Delivered'),
         
     ]
-    msg_id= models.AutoField(primary_key=True)
+    
+    ordup_id= models.AutoField(primary_key=True)
     Trackid = models.CharField(max_length=500,default="")
     First_name = models.CharField(max_length=500,default="")
     Last_name = models.CharField(max_length=500,default="") 
     Today_order = models.CharField(max_length=5000,default="")
-    Today_date_time = models.DateTimeField(default=datetime.now)
+    Today_date_time = models.DateTimeField(default=datetime.datetime.now)
 
     shipped_order = models.CharField(max_length=20,choices=order_CHOICES1,default=choices) 
-    shipped_date_time = models.DateTimeField(default=datetime.now)
+    shipped_date_time = models.DateTimeField(default=datetime.datetime.now)
 
     Out_for_delivery = models.CharField(max_length=20,choices=order_CHOICES2,default=choices) 
-    out_date_time = models.DateTimeField(default=datetime.now)
+    out_date_time = models.DateTimeField(default=datetime.datetime.now)
 
     Arriving_order = models.CharField(max_length=20,choices=order_CHOICES3,default=choices) 
-    Arriving_date_time = models.DateTimeField(default=datetime.now)
-    
+    Arriving_date_time = models.DateTimeField(default=datetime.datetime.now)
+
+    Delivered_order = models.CharField(max_length=20,choices=order_CHOICES4,default=choices) 
+    Delivered_date_time = models.DateTimeField(default=datetime.datetime.now)
+    # order = models.ForeignKey(Orders, on_delete=models.CASCADE,related_name='display',default='')
     def __str__(self):
         return self.First_name+" "+self.Trackid

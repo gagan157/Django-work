@@ -46,13 +46,13 @@
   <div class="list-group btngrp">
           
     
-    <button type="button" class="list-group-item list-group-item-action active my-1" aria-current="true" id="trkbtn1">
+    <button type="button" class="list-group-item list-group-item-action active my-1" aria-current="true" id="trkcls1">
       {{order_update.Today_order}} <span class="timestamp">{{order_update.Today_date_time}}</span> 
     </button>
     <button type="button" class="list-group-item list-group-item-action my-1  d-none" id="trkcls2"><span id="trkbtn2">{{order_update.shipped_order}}</span> <span class="timestamp">{{order_update.shipped_date_time}}</span></button>
     <button type="button" class="list-group-item list-group-item-action my-1  d-none" id="trkcls3"><span id="trkbtn3">{{order_update.Out_for_delivery}}</span> <span class="timestamp">{{order_update.out_date_time}}</span></button> 
     <button type="button" class="list-group-item list-group-item-action my-1  d-none" id="trkcls4"><span id="trkbtn4">{{order_update.Arriving_order}}</span> <span class="timestamp">{{order_update.Arriving_date_time}}</span></button>
-    <!-- <button type="button" class="list-group-item list-group-item-action disable my-3" disabled>A disabled button item <span class="timestamp">{{order_update.Arriving_date_time}}</span></button> -->
+    <button type="button" class="btn btn-success my-1 d-none" id="trkcls5"><span id="trkbtn5"><b>{{order_update.Delivered_order}}</b></span><span class="timestamp">{{order_update.Delivered_date_time}}</span></button>
     
     
   </div>

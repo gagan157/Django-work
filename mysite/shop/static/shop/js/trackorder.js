@@ -49,6 +49,7 @@ function showhideorderupdate() {
     let Choices2 = document.getElementById('trkbtn2').innerText
     let Choices3 = document.getElementById('trkbtn3').innerText
     let Choices4 = document.getElementById('trkbtn4').innerText
+    let Choices5 = document.getElementById('trkbtn5').innerText
     
     if(Choices2!=Choicess){
         document.getElementById('trkcls2').setAttribute('class','list-group-item list-group-item-action my-1 active')
@@ -62,12 +63,21 @@ function showhideorderupdate() {
         document.getElementById('trkcls4').setAttribute('class','list-group-item list-group-item-action my-1 active')
         countbtn+=1
     }
+    if(Choices5!=Choicess){
+        document.getElementById('trkcls5').setAttribute('class','btn btn-success my-1')        
+        document.getElementById('trkcls2').setAttribute('class','list-group-item list-group-item-action my-1 d-none')
+        document.getElementById('trkcls3').setAttribute('class','list-group-item list-group-item-action my-1 d-none')
+        document.getElementById('trkcls4').setAttribute('class','list-group-item list-group-item-action my-1 d-none')
+        document.getElementById('trkcls1').setAttribute('class','list-group-item list-group-item-action my-1 d-none')
+        document.getElementById('btnpg').style.backgroundColor='#198754'
+        countbtn+=1
+    }
     
     
 
     if(countbtn>=1)
     {
-        let size = countbtn*20
+        let size = countbtn*25
         
         document.getElementById('btnpg').style.width= `${size}%`
         document.getElementById('sppg').innerHTML = `${size}%`
