@@ -1,4 +1,5 @@
 
+from math import trunc
 from django.db import models
 from django.utils import timezone
 import datetime
@@ -65,11 +66,25 @@ class Orders(models.Model):
     def __str__(self):
         if self.First_name=="":
             self.First_name='No Name'
-        return self.First_name+" "+self.Last_name 
+        return self.First_name.capitalize() +" "+self.Last_name 
+
+
+class Payment_Details(models.Model):
+    Payment_id = models.AutoField(primary_key=True)
+    porder=models.ForeignKey(Orders,on_delete=models.CASCADE)
+    First_name = models.CharField(max_length=500,default="")
+    Last_name = models.CharField(max_length=500,default="") 
+    Payment_type=models.CharField(max_length=300,default='')
+    Name_on_Card=models.CharField(max_length=1000,default='')
+    Card_no=models.CharField(max_length=1000,default='')
+    Expiration=models.CharField(max_length=1000,default='')
+    cvv=models.CharField(max_length=10,default='')
+
+    # def __str__(self):
+    #     return self.First_name+'  '+self.Last_name+'  '+self.Payment_type
 
 class Orders_update(models.Model):
     choices='Choices'
-    Order_Today='ot'
     Shipped_your_order ='Shipped your order'
     Out_for_delivery="Out for delivery"
     Arriving="Arriving"
@@ -95,7 +110,7 @@ class Orders_update(models.Model):
         
     ]
     
-    ordup_id= models.AutoField(primary_key=True)
+    ordup_id= models.AutoField(primary_key=True)   
     Trackid = models.CharField(max_length=500,default="")
     First_name = models.CharField(max_length=500,default="")
     Last_name = models.CharField(max_length=500,default="") 
@@ -113,6 +128,7 @@ class Orders_update(models.Model):
 
     Delivered_order = models.CharField(max_length=20,choices=order_CHOICES4,default=choices) 
     Delivered_date_time = models.DateTimeField(default=datetime.datetime.now)
-    # order = models.ForeignKey(Orders, on_delete=models.CASCADE,related_name='display',default='')
+
+
     def __str__(self):
         return self.First_name+" "+self.Trackid

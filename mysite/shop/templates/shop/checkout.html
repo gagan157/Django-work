@@ -107,19 +107,19 @@
 
           <div class="my-3">
             <div class="form-check">
-              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="">
+              <input id="credit" name="paymentMethod" type="radio"  value="Credit card" class="form-check-input" checked="">
               <label class="form-check-label" for="credit">Credit card</label>
             </div>
             <div class="form-check">
-              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" >
+              <input id="debit" name="paymentMethod" type="radio" value="Debit card" class="form-check-input" >
               <label class="form-check-label" for="debit">Debit card</label>
             </div>
             <div class="form-check">
-              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" >
+              <input id="paypal" name="paymentMethod" type="radio"  value="PayPal" class="form-check-input" >
               <label class="form-check-label" for="paypal">PayPal</label>
             </div>
             <div class="form-check">
-              <input id="cod" name="paymentMethod" type="radio" class="form-check-input" >
+              <input id="cod" name="paymentMethod" type="radio"  value="COD(Cash On Delivery)" class="form-check-input" >
               <label class="form-check-label" for="paypal">COD(Cash On Delivery)</label>
             </div>
           </div>
@@ -127,26 +127,26 @@
           <div class="row gy-3">
             <div class="col-md-6">
               <label for="cc-name" class="form-label">Name on card</label>
-              <input type="text" class="form-control" id="cc-name" placeholder="" >
+              <input type="text" class="form-control" name="cardname" id="cc-name" placeholder="" >
               <small class="text-muted">Full name as displayed on card</small>
               
             </div>
 
             <div class="col-md-6">
               <label for="cc-number" class="form-label">Credit card number</label>
-              <input type="text" class="form-control" id="cc-number" placeholder="" >
+              <input type="text" class="form-control" name="cardno" id="cc-number" placeholder="" >
               
             </div>
 
             <div class="col-md-3">
               <label for="cc-expiration" class="form-label">Expiration</label>
-              <input type="text" class="form-control" id="cc-expiration" placeholder="" >
+              <input type="text" class="form-control" id="cc-expiration" name="cardexp" placeholder="" >
               
             </div>
 
             <div class="col-md-3">
               <label for="cc-cvv" class="form-label">CVV</label>
-              <input type="text" class="form-control" id="cc-cvv" placeholder="" >
+              <input type="text" class="form-control" id="cc-cvv" name="cardcvv" placeholder="" >
               
             </div>
           </div>
