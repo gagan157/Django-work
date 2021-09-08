@@ -1,0 +1,30 @@
+{% extends 'shop/basic.html' %} 
+{% load static %}
+
+{% block title %}Registration{% endblock%} 
+{% block css %}
+
+{% endblock%}
+
+{% block body %}
+
+<div class="container my-4">
+<form action="" method="POST" >
+    {% csrf_token %}
+    
+    {%for fm in form%}
+    <div class="my-4">
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+    </div>
+    {%endfor%}
+ 
+    <a href="{% url 'login' %}">Login</a><br>
+    <button type="submit" class="w-100 btn btn-primary btn-lg">Submit</button>
+</form>
+{% if messages %}
+{% for msg in messages %}
+ <span {% if msg.tags%} class="{{msg.tags}}" {% endif %}> {{msg}}</span>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock %}

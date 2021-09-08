@@ -8,34 +8,36 @@ import time
 
 # Create your views here.
 
-def home(request):  
-    #single slide     
-    # product=Product.objects.all()    
-    slideo=slider.objects.all()
-    # n=len(product)    
-    # nSlides= n//4 + ceil((n/4) - (n//4))
+def home(request):
+    if request.user.is_authenticated: 
+        #single slide     
+        # product=Product.objects.all()    
+        slideo=slider.objects.all()
+        # n=len(product)    
+        # nSlides= n//4 + ceil((n/4) - (n//4))
 
-    #mutiple list sorting by category
-    allprod=[]
-    catproduct=Product.objects.values('category')
-    # print(catproduct)
-    # for item in catproduct:
-    #     cats={item['category']}
-    cats={item['category'] for item in catproduct}
-    cats=sorted(cats)
-    
-    for cat in cats:
-        product=Product.objects.filter(category=cat).order_by('product_name')       
-        n=len(product)    
-        nSlides= n//4 + ceil((n/4) - (n//4))
-        allprod.append([product,range(nSlides),nSlides])
-    # print(f"allprodud= {allprod}")
+        #mutiple list sorting by category
+        allprod=[]
+        catproduct=Product.objects.values('category')
+        # print(catproduct)
+        # for item in catproduct:
+        #     cats={item['category']}
+        cats={item['category'] for item in catproduct}
+        cats=sorted(cats)
+        
+        for cat in cats:
+            product=Product.objects.filter(category=cat).order_by('product_name')       
+            n=len(product)    
+            nSlides= n//4 + ceil((n/4) - (n//4))
+            allprod.append([product,range(nSlides),nSlides])
+        # print(f"allprodud= {allprod}")
 
 
-    param={"allprod":allprod,"slideo":slideo}
+        param={"allprod":allprod,"slideo":slideo,"username":request.user.first_name}
     # param={'product':obj,'range':range(nSlides),'no_of_slide':nSlides,'slidero':slideo}
-    return render(request,'shop/home.html',param)
-
+        return render(request,'shop/home.html',param)
+    else:
+        return HttpResponseRedirect('/login/')
 
 
 def contact(request):
@@ -134,5 +136,7 @@ def checkout(request):
 
     else:    
         return render(request,'shop/checkout.html')
-        
-                   
+
+
+
+   

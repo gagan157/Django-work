@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [ 
+    'usersignuplogin.apps.UsersignuploginConfig',
     'shop.apps.ShopConfig',   
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',  
     'blog',
+
 ]
 
 MIDDLEWARE = [
