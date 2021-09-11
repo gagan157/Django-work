@@ -1,5 +1,5 @@
 
-from math import trunc
+
 from django.db import models
 from django.utils import timezone
 import datetime

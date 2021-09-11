@@ -3,20 +3,33 @@ from django.http.response import HttpResponseRedirect
 from .forms import SignUpForm,LoginForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from .models import UserProfile
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 def Sign_up(request):
-    if request.method=='POST':
-        form=SignUpForm(request.POST)
-        if form.is_valid():
-            messages.success(request,'Account sign_up sucessfully')
-            form.save()
-            return HttpResponseRedirect('/login/')
+    if not request.user.is_authenticated:
+        if request.method=='POST':
+            form=SignUpForm(request.POST)
+            
+            if form.is_valid():
+                username= form.cleaned_data['username']                
+                fist_name= form.cleaned_data['first_name']                
+                last_name= form.cleaned_data['last_name']                
+                email= form.cleaned_data['email']
+                form.save()
+                userid=User.objects.get(username=username)
+                print(userid)
+                user_detail=UserProfile(user=userid,Username=username,First_name=fist_name,Last_name=last_name,Email=email)                
+                user_detail.save()
+                messages.success(request,'Account sign up sucessfully')
+                return HttpResponseRedirect('/login/')
+        else:
+            form=SignUpForm()        
+        return render(request,'usersignuplogin/UserRregistration.html',{'form':form})   
     else:
-        form=SignUpForm()        
-    return render(request,'usersignuplogin/UserRregistration.html',{'form':form})   
-
+        return HttpResponseRedirect('/shop/')
 
 def Log_in(request):
     if not request.user.is_authenticated:
@@ -29,7 +42,7 @@ def Log_in(request):
                 user=authenticate(username=uname,password=upass)
                 if user is not None:
                     login(request,user)
-                    return HttpResponseRedirect('/shop/')
+                    return HttpResponseRedirect('/shop/profile')
                     
         else:
             lform = LoginForm()
@@ -39,4 +52,4 @@ def Log_in(request):
 
 def Log_out(request):
     logout(request)
-    return HttpResponseRedirect('/login/')    
+    return HttpResponseRedirect('/shop/')    

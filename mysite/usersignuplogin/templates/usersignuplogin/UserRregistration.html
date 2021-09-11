@@ -3,28 +3,47 @@
 
 {% block title %}Registration{% endblock%} 
 {% block css %}
-
+    <link rel="stylesheet" href="{% static 'usersignuplogin/css/signup.css' %}">
 {% endblock%}
 
 {% block body %}
 
-<div class="container my-4">
-<form action="" method="POST" >
-    {% csrf_token %}
-    
-    {%for fm in form%}
-    <div class="my-4">
-    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+<div id="login-box">
+    <div class="left">
+      <h1>Sign up</h1>
+        <form action="" method="POST" >
+            {% csrf_token %}
+          
+            {%for fm in form%}
+            <div class="my-4">
+                {{fm}} {{fm.errors|striptags}}
+            </div>
+            {%endfor%} 
+            
+            <div class="mb-2" style="text-align: center;">       
+            <a href="{% url 'login' %}">I am already a Member</a><br>
+            </div>
+            <div class="myform-button">
+            <button type="submit" class="w-100 myform-btn">Submit</button>
+            </div>
+        </form>      
+      <!-- <input type="submit" name="signup_submit" value="Sign me up" /> -->
     </div>
-    {%endfor%}
- 
-    <a href="{% url 'login' %}">Login</a><br>
-    <button type="submit" class="w-100 btn btn-primary btn-lg">Submit</button>
-</form>
-{% if messages %}
-{% for msg in messages %}
- <span {% if msg.tags%} class="{{msg.tags}}" {% endif %}> {{msg}}</span>
-{% endfor %}
-{% endif %}
-</div>
+    
+    <div class="right">
+      <span class="loginwith">Sign in with<br />social network</span>
+      
+      <button class="social-signin facebook">Log in with facebook</button>
+      <button class="social-signin twitter">Log in with Twitter</button>
+      <button class="social-signin google">Log in with Google+</button>
+    </div>
+    <div class="or">OR</div>
+  </div>
+  {% if messages %}
+  {% for msg in messages %}
+   <span {% if msg.tags%} class="{{msg.tags}}" {% endif %}> {{msg}}</span>
+  {% endfor %}
+  {% endif %}
+
+
 {% endblock %}

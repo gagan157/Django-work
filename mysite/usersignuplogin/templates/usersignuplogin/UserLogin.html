@@ -35,6 +35,13 @@
 </div> -->
 
 <section class="myform-area">
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success scucess" role="alert">
+    {{message}}
+  </div>
+  {% endfor %}
+  {% endif %}
   <div class="container">
       <div class="row justify-content-center">
           <div class="col-lg-8">

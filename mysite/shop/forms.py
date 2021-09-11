@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.forms import widgets
 
 
+
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
@@ -20,5 +21,4 @@ class LoginForm(AuthenticationForm):
     username.widget = forms.TextInput(attrs={'class':'form-control'})
     password = forms.CharField()
     password.widget = forms.PasswordInput(attrs={'class':'form-control'})
-    
     

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -5,39 +6,38 @@ from shop.models import Product,slider,Contact,Orders,Orders_update,Payment_Deta
 from math import ceil, prod
 import random
 import time
+from usersignuplogin.forms import UserProfileForm,UserProfile,SignUpForm
+
 
 # Create your views here.
 
-def home(request):
-    if request.user.is_authenticated: 
-        #single slide     
-        # product=Product.objects.all()    
-        slideo=slider.objects.all()
-        # n=len(product)    
-        # nSlides= n//4 + ceil((n/4) - (n//4))
+def home(request):    
+    #single slide     
+    # product=Product.objects.all()    
+    slideo=slider.objects.all()
+    # n=len(product)    
+    # nSlides= n//4 + ceil((n/4) - (n//4))
 
-        #mutiple list sorting by category
-        allprod=[]
-        catproduct=Product.objects.values('category')
-        # print(catproduct)
-        # for item in catproduct:
-        #     cats={item['category']}
-        cats={item['category'] for item in catproduct}
-        cats=sorted(cats)
-        
-        for cat in cats:
-            product=Product.objects.filter(category=cat).order_by('product_name')       
-            n=len(product)    
-            nSlides= n//4 + ceil((n/4) - (n//4))
-            allprod.append([product,range(nSlides),nSlides])
-        # print(f"allprodud= {allprod}")
+    #mutiple list sorting by category
+    allprod=[]
+    catproduct=Product.objects.values('category')
+    # print(catproduct)
+    # for item in catproduct:
+    #     cats={item['category']}
+    cats={item['category'] for item in catproduct}
+    cats=sorted(cats)
+    
+    for cat in cats:
+        product=Product.objects.filter(category=cat).order_by('product_name')       
+        n=len(product)    
+        nSlides= n//4 + ceil((n/4) - (n//4))
+        allprod.append([product,range(nSlides),nSlides])
+    # print(f"allprodud= {allprod}")
 
+    param={"allprod":allprod,"slideo":slideo}
+# param={'product':obj,'range':range(nSlides),'no_of_slide':nSlides,'slidero':slideo}
+    return render(request,'shop/home.html',param)
 
-        param={"allprod":allprod,"slideo":slideo,"username":request.user.first_name}
-    # param={'product':obj,'range':range(nSlides),'no_of_slide':nSlides,'slidero':slideo}
-        return render(request,'shop/home.html',param)
-    else:
-        return HttpResponseRedirect('/login/')
 
 
 def contact(request):
@@ -139,4 +139,29 @@ def checkout(request):
 
 
 
-   
+def Profile(request):
+    if request.user.is_authenticated:
+        username=request.user.username
+        userdata=UserProfile.objects.filter(Username=username)
+        return render(request,'shop/profile.html',{'userdata':userdata[0]})
+    else:
+        return HttpResponseRedirect('/shop/')    
+
+def ProfileUpdate(request,my_id):
+    if request.user.is_authenticated:
+        if request.method=='POST':  
+            instance=UserProfile.objects.get(id=my_id)
+            print(instance)
+            form = UserProfileForm(request.POST , instance=instance)
+            if form.is_valid():
+                form.save()                
+                return HttpResponseRedirect('/shop/profile')
+
+        else:
+            instance = UserProfile.objects.get(id=my_id)
+            form = UserProfileForm(instance=instance)       
+        return render(request,'shop/profileedit.html',{'form':form,'form1':instance})
+    else:
+        return HttpResponseRedirect('/shop/')        
+
+
