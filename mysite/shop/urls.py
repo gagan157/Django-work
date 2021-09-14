@@ -32,6 +32,8 @@ urlpatterns = [
       path("checkout",views.checkout,name="checkout"),
       path("profile",views.Profile,name="profile"), 
       path("update/<int:my_id>",views.ProfileUpdate,name="update"), 
+      path("setting",views.Changepassword,name="setting"), 
+      path("delete/<int:my_id>",views.Deleteuser,name="deletedata"), 
     #   path("signup",views.Sign_up,name="signup"),
     #   path("login",views.Log_in,name="login"),
 

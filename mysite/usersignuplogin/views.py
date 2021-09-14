@@ -21,7 +21,7 @@ def Sign_up(request):
                 form.save()
                 userid=User.objects.get(username=username)
                 print(userid)
-                user_detail=UserProfile(user=userid,Username=username,First_name=fist_name,Last_name=last_name,Email=email)                
+                user_detail=UserProfile(user=userid,Username=username)                
                 user_detail.save()
                 messages.success(request,'Account sign up sucessfully')
                 return HttpResponseRedirect('/login/')
