@@ -1,3 +1,4 @@
+
 from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
@@ -5,10 +6,10 @@ from django.http import HttpResponse
 from shop.models import Product,slider,Contact,Orders,Orders_update,Payment_Details
 from math import ceil, prod
 import random
-import time
-from usersignuplogin.forms import UserProfileForm,UserProfile,SignUpForm
-from .forms import UserChangePassword,EditUserProfile
-from django.contrib.auth.models import User
+from userdetails.forms import ProductAndAddresForm
+from userdetails.models import UserOrder,ProductItems,UserDliveryAddress,UserPaymentMethod
+import json
+
 
 
 
@@ -100,110 +101,89 @@ def search(request):
 
 
 def checkout(request):
-    
-    if request.method=='POST': 
-        trackid = random.randint(100,1000000)  
-        # print('id',trackid)  
-        itemjson = request.POST.get('itemjson','') 
-        fname = request.POST.get('fname','')
-        lname = request.POST.get('lname','')
-        phone = request.POST.get('phone','')
-        email = request.POST.get('email','')
-        address = request.POST.get('address','')
-        address2 = request.POST.get('address2','')
-        country = request.POST.get('country','')
-        state = request.POST.get('state','')
-        pincode = request.POST.get('pincode','')
-        # print(itemjson,fname)
-        #Payment Detail
-        paymentty = request.POST.get('paymentMethod','')
-        cardname = request.POST.get('cardname','')
-        cardno = request.POST.get('cardno','')
-        cardexp = request.POST.get('cardexp','')
-        cardcvv = request.POST.get('cardcvv','')
-        # print(cardname,cardexp,cardcvv,cardno)
-        orders= Orders(Trackid=trackid,Itemjson=itemjson,First_name=fname,Last_name=lname,Email=email,Phone=phone,Address=address,Address2=address2,Country=country,State=state,Pin_code=pincode)
-        orders.save()
-        idorder=Orders.objects.get(Trackid=trackid)
-        print('id=',idorder)
-        detail='Ordered today'
-        orders_update=Orders_update(First_name=fname,Last_name=lname,Trackid=trackid,Today_order=detail)
-        orders_update.save()
-       
-        payment_detail=Payment_Details(porder=idorder,First_name=fname,Last_name=lname,Payment_type=paymentty,Name_on_Card=cardname,Card_no=cardno,Expiration=cardexp,cvv=cardcvv)
-        payment_detail.save()
-       
-        param={"Trackid":trackid}
-        # return HttpResponseRedirect('')
-        return render(request,'shop/tracker.html',param)
-
-    else:    
-        return render(request,'shop/checkout.html')
-
-
-
-def Profile(request):
-    if request.user.is_authenticated:
-        username=request.user.username
-        userdata=UserProfile.objects.filter(Username=username)
-        userdata2=User.objects.filter(username=username)
-        print(userdata,userdata2)
-        return render(request,'shop/profile.html',{'userdata':userdata[0],'userdata2':userdata2[0]})
-    else:
-        return HttpResponseRedirect('/shop/')    
-
-def ProfileUpdate(request,my_id):
-    if request.user.is_authenticated:
-        if request.method=='POST': 
-            instance=UserProfile.objects.get(pk=my_id)
-            print(instance)
-            userform=EditUserProfile(request.POST,instance=request.user)
-            userprofile = UserProfileForm(request.POST , instance=instance)
-
-            if userprofile.is_valid() and userform.is_valid():               
-                userform.save()        
-                userprofile.save()                 
-                return HttpResponseRedirect('/shop/profile')
-
-        else:
-            username=request.user.username
-            userprofileget=User.objects.filter(username=username)
-            userform=EditUserProfile(instance=request.user)
-            instance = UserProfile.objects.get(pk=my_id)
-            userprofile = UserProfileForm(instance=instance) 
-
-        return render(request,'shop/profileedit.html',{'form':userprofile,'form1':instance,'userform':userform,'userprofileget':userprofileget[0]})
-    else:
-        return HttpResponseRedirect('/shop/')        
-
-
-
-def Changepassword(request):
-    if request.user.is_authenticated:
-        if request.method=='POST':
-            fm = UserChangePassword(user=request.user,data=request.POST)
-            if fm.is_valid():
-                fm.save()
-                urid=None
-                return HttpResponseRedirect('/profile')
-        else:
-            urname=request.user.username
-            urid=User.objects.get(username=urname)
+    trackid = random.randint(100,1000000) 
+    if not request.user.is_authenticated:        
+        if request.method=='POST':              
+            # print('id',trackid)  
+            itemjson = request.POST.get('itemjson','') 
+            fname = request.POST.get('fname','')
+            lname = request.POST.get('lname','')
+            phone = request.POST.get('phone','')
+            email = request.POST.get('email','')
+            address = request.POST.get('address','')
+            address2 = request.POST.get('address2','')
+            country = request.POST.get('country','')
+            state = request.POST.get('state','')
+            pincode = request.POST.get('pincode','')
+            # print(itemjson,fname)
+            #Payment Detail
+            paymentty = request.POST.get('paymentMethod','')
+            cardname = request.POST.get('cardname','')
+            cardno = request.POST.get('cardno','')
+            cardexp = request.POST.get('cardexp','')
+            cardcvv = request.POST.get('cardcvv','')
+            # print(cardname,cardexp,cardcvv,cardno)
+            orders= Orders(Trackid=trackid,Itemjson=itemjson,First_name=fname,Last_name=lname,Email=email,Phone=phone,Address=address,Address2=address2,Country=country,State=state,Pin_code=pincode)
+            orders.save()
+            idorder=Orders.objects.get(Trackid=trackid)
+            print('id=',idorder)
+            detail='Ordered today'
+            orders_update=Orders_update(First_name=fname,Last_name=lname,Trackid=trackid,Today_order=detail)
+            orders_update.save()
+        
+            payment_detail=Payment_Details(porder=idorder,First_name=fname,Last_name=lname,Payment_type=paymentty,Name_on_Card=cardname,Card_no=cardno,Expiration=cardexp,cvv=cardcvv)
+            payment_detail.save()
             
-            fm = UserChangePassword(user=request.user)
+            param={"Trackid":trackid}
+            # return HttpResponseRedirect('')
+            return render(request,'shop/tracker.html',param)
+
+        else: 
             
-        return render(request,'shop/setting.html',{'forms':fm,'ur':urid})    
+            return render(request,'shop/checkout.html')
+
     else:
-        return HttpResponseRedirect('/shop/')        
+        
+        if request.method=="POST":
+            urename=request.user.username
+            userid=User.objects.get(username=urename)
+            print(userid)
+            userdata=ProductAndAddresForm(request.POST)
+            if userdata.is_valid():
+                fusname=userdata.cleaned_data['Full_name']
+                add1=userdata.cleaned_data['D_address1']
+                add2=userdata.cleaned_data['D_address2']
+                phn=userdata.cleaned_data['Phone']
+                coun=userdata.cleaned_data['Country']
+                st=userdata.cleaned_data['State']
+                pc=userdata.cleaned_data['Pin_code']
+                pitems=userdata.cleaned_data['productitems']
+                items = json.loads(pitems)
+                
+                totalitems =len(items)
+                       
+                uda=UserDliveryAddress(user=userid,Track_id=trackid,P_total=totalitems,                                  
+                    Full_name=fusname,D_address1=add1,
+                    D_address2=add2,Phone=phn,Country=coun,State=st,Pin_code=pc)
+                uda.save()
+                idfil = UserOrder.objects.filter(user=userid)                
+                for myid in idfil:
+                    userorderid=myid.id
+                getid=UserOrder.objects.get(pk=userorderid)
+                print(getid)
+                for item in items:                   
+                    for d in item:                        
+                        it=item[d]      
+                        pn=it['name']
+                        pq=it['qty']
+                        pp=it['price']
+                        print(pn,pq,pp)
+                        pi=ProductItems(userorder=getid,
+                        P_code=d,P_name=pn,P_price=pp,P_qty=pq)                
+                        pi.save()
+                return HttpResponse('done')
+        else:
+            userdata=ProductAndAddresForm()
+            return render(request,'shop/checkout.html',{'form':userdata})
+        
 
-
-
-def Deleteuser(request,my_id):
-    if request.user.is_authenticated:
-        if request.method=='POST':
-            deluser=User.objects.get(pk=my_id)
-            deluser.delete()
-        return HttpResponseRedirect('/shop/')    
-    else:
-        return HttpResponseRedirect('/login/')
-    

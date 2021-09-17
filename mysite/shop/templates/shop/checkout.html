@@ -9,7 +9,7 @@
       <h2>Checkout form</h2>
       <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
     </div>
-
+    {% if not user.is_authenticated %}
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -157,7 +157,42 @@
         </form>
       </div>
     </div>
+    {% else %}
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Your cart</span>
+          <span class="badge bg-primary rounded-pill" id="yourcart">0</span>
+        </h4>
+        <ul class="list-group mb-3" id="checkoutul">
+          
+          
+        </ul>
 
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Billing address</h4>
+        <form action="" method="POST" role="form">{% csrf_token %}
+          <!-- <input type="hidden" id="itemjson" name="itemjson"> -->
+          {{form}}    
+        
+          
+        
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    
+    
+    
+
+    {% endif %}
 
  
 

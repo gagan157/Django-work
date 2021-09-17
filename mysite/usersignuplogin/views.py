@@ -3,7 +3,7 @@ from django.http.response import HttpResponseRedirect
 from .forms import SignUpForm,LoginForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
-from .models import UserProfile
+from userdetails.models import UserProfile
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -42,7 +42,7 @@ def Log_in(request):
                 user=authenticate(username=uname,password=upass)
                 if user is not None:
                     login(request,user)
-                    return HttpResponseRedirect('/shop/profile')
+                    return HttpResponseRedirect('/userdetails/profile')
                     
         else:
             lform = LoginForm()

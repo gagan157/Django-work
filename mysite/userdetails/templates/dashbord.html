@@ -1,0 +1,55 @@
+{% extends 'shop/basic.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'userdetails/css/dashbord.css' %}">
+{% endblock%}
+{% block title %}Dashbord{% endblock%}
+{% block body %}
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-4 stretch-card grid-margin mybox">
+          <div class="card bg-gradient-danger card-img-holder text-white crdholdr">
+            <div class="card-body mycard">
+              <!-- <img src="../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"> -->
+              <h4 class="font-weight-normal mb-3">Your Orders<i class="mdi mdi-chart-line mdi-24px float-right"></i>
+              </h4>
+              <h2 class="mb-5">0</h2>
+              <h6 class="card-text">Increased by 60%</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row my-4">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group item heading</h5>
+                <small>3 days ago</small>
+              </div>
+              <p class="mb-1">Some placeholder content in a paragraph.</p>
+              <small>And some small print.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group item heading</h5>
+                <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="mb-1">Some placeholder content in a paragraph.</p>
+              <small class="text-muted">And some muted small print.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group item heading</h5>
+                <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="mb-1">Some placeholder content in a paragraph.</p>
+              <small class="text-muted">And some muted small print.</small>
+            </a>
+          </div>
+      </div>
+      
+</div>
+
+{% endblock %}

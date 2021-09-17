@@ -15,7 +15,7 @@ if(localStorage.getItem('cart')==null){
 else{
     cart=JSON.parse(localStorage.getItem('cart'))
     updatecart(cart)
-    cartitem(cart)
+  
     
 }
 var show=0
@@ -114,7 +114,7 @@ function updatecart(cart) {
                 //     element[key] = Math.max(0, element[key]);
                 //     document.getElementById(`val${id}`).innerText=element[key]                
                 //     // console.log(cart[key],'click minius')
-                //     cartitem(cart)
+            
                     
                     
                 
@@ -127,7 +127,7 @@ function updatecart(cart) {
                 //     element[key]=element[key]+1
                 //     document.getElementById(`val${id}`).innerText=element[key]              
                 //     // console.log(cart[key],'click minius')                    
-                //     cartitem(cart)
+                //    
                     
                 // }
             }
@@ -137,7 +137,7 @@ function updatecart(cart) {
     
     localStorage.setItem('cart', JSON.stringify(cart));
     document.getElementById('navcart').innerText = sum
-    cartitem(cart)
+
 
 }
 
@@ -145,48 +145,48 @@ function updatecart(cart) {
 // $(document).ready(function(){
 //     $('[data-toggle="popover"]').popover({sanitize: false,html:true});   
 //   });
-$(function () {
-    $('[data-toggle="popover"]').popover({
-        delay: {
-            show: 100
-        },
-         html: true,
-         sanitize: false,
+// $(function () {
+//     $('[data-toggle="popover"]').popover({
+//         delay: {
+//             show: 100
+//         },
+//          html: true,
+//          sanitize: false,
          
-    })
-})   
+//     })
+// })   
 
 
-function cartitem(cart) {   
-    var popStr = "";        
-            popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";
-            cart.forEach(function(element) {
-                for(let key in element){
-                    // console.log(key,allitem[key])
-                    // let prid=document.querySelector(`#${key}`)
-                    let id = key.slice(2)
+// function cartitem(cart) {   
+//     var popStr = "";        
+//             popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";
+//             cart.forEach(function(element) {
+//                 for(let key in element){
+//                     // console.log(key,allitem[key])
+//                     // let prid=document.querySelector(`#${key}`)
+//                     let id = key.slice(2)
 
-                    let price = element[key].price
-                    let totalprice = Number(price)
-                        popStr = popStr + `<h6><h5>${element[key].name}</h5>
-                        <span id="btn${id}" class="divpr">
-                        <button class="btn btn-primary minus" id="minus${id}">-</button>
-                        <span id="val${id}"> ${element[key].qty} </span>   
-                        <button class="btn btn-primary plus" id="plus${id}">+</button>
-                        </span>                   
-                        ${totalprice*element[key].qty}Rps.</h6>`
+//                     let price = element[key].price
+//                     let totalprice = Number(price)
+//                         popStr = popStr + `<h6><h5>${element[key].name}</h5>
+//                         <span id="btn${id}" class="divpr">
+//                         <button class="btn btn-primary minus" id="minus${id}">-</button>
+//                         <span id="val${id}"> ${element[key].qty} </span>   
+//                         <button class="btn btn-primary plus" id="plus${id}">+</button>
+//                         </span>                   
+//                         ${totalprice*element[key].qty}Rps.</h6>`
 
                     
-                }
-            })
-            popStr = popStr + "</div>" 
-            popStr = popStr + "<button class='btn btn-primary' id='clrbtn' onClick='clrbtn()'>Clear</button>"
-            popStr = popStr + "<a class='btn btn-primary mx-2' href='checkout'>Checkout</a>" 
+//                 }
+//             })
+//             popStr = popStr + "</div>" 
+//             popStr = popStr + "<button class='btn btn-primary' id='clrbtn' onClick='clrbtn()'>Clear</button>"
+//             popStr = popStr + "<a class='btn btn-primary mx-2' href='checkout'>Checkout</a>" 
        
     
-    document.querySelector('#popcart').setAttribute('title','You Items')
-    document.querySelector('#popcart').setAttribute('data-bs-content',popStr)  
-}
+//     document.querySelector('#popcart').setAttribute('title','You Items')
+//     document.querySelector('#popcart').setAttribute('data-bs-content',popStr)  
+// }
 // let clr=document.querySelector('#clrbtn')
 //     console.log(clr)
 function clrbtn() {
@@ -200,7 +200,7 @@ function clrbtn() {
                 <button class="btn btn-primary btncart" id="pr${id}">Add Cart</button>
                 `
                 clickbtn()
-                cartitem(cart)
+          
         }
     })
     

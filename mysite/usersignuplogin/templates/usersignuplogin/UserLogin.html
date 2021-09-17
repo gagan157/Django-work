@@ -60,7 +60,12 @@
                         {% for fm in form %}
                           <div class="form-group">
                               {{fm}}
-                              <label>{{fm.label}}</label>
+                              <label>{{fm.label}}</label>{% if fm.label == 'Password' %} 
+                              <span class="pointer  d-none" id="notseepass"><i class="far fa-eye-slash"></i></span>  
+                              <span class="pointer" id="seepass"><i class="far fa-eye"></i></i></span>  
+                              
+                              {% endif %}
+                              
                               <div id="{{fm.label}}" class="form-text"><b> {{fm.errors|striptags}} </b></div>
                           </div>
                         {% endfor %}
@@ -87,4 +92,7 @@
 </section>
 
 
+{% endblock %}
+{% block js %}
+<script src="{% static 'usersignuplogin/js/login.js' %}"></script>
 {% endblock %}
