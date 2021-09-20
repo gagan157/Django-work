@@ -7,7 +7,7 @@ from shop.models import Product,slider,Contact,Orders,Orders_update,Payment_Deta
 from math import ceil, prod
 import random
 from userdetails.forms import ProductAndAddresForm
-from userdetails.models import UserOrder,ProductItems,UserDliveryAddress,UserPaymentMethod
+from userdetails.models import UserOrder,UserDliveryAddress,UserPaymentMethod,UserProdectitems
 import json
 
 
@@ -158,16 +158,17 @@ def checkout(request):
                 st=userdata.cleaned_data['State']
                 pc=userdata.cleaned_data['Pin_code']
                 pitems=userdata.cleaned_data['productitems']
+                print(pitems)
                 items = json.loads(pitems)
-                
                 totalitems =len(items)
                        
                 uda=UserDliveryAddress(user=userid,Track_id=trackid,P_total=totalitems,                                  
-                    Full_name=fusname,D_address1=add1,
+                    P_item=pitems,Full_name=fusname,D_address1=add1,
                     D_address2=add2,Phone=phn,Country=coun,State=st,Pin_code=pc)
                 uda.save()
-                idfil = UserOrder.objects.filter(user=userid)                
-                for myid in idfil:
+                usorderid=UserOrder.objects.filter(user=userid)
+                print(usorderid)
+                for myid in usorderid:
                     userorderid=myid.id
                 getid=UserOrder.objects.get(pk=userorderid)
                 print(getid)
@@ -178,8 +179,8 @@ def checkout(request):
                         pq=it['qty']
                         pp=it['price']
                         print(pn,pq,pp)
-                        pi=ProductItems(userorder=getid,
-                        P_code=d,P_name=pn,P_price=pp,P_qty=pq)                
+                        pi=UserProdectitems(userorder=getid,Track_id=trackid,
+                        P_name=pn,P_price=pp,P_qty=pq)                
                         pi.save()
                 return HttpResponse('done')
         else:

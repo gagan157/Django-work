@@ -1,7 +1,9 @@
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProdectitems, UserProfile,UserOrder,UserDliveryAddress
 from .forms import EditUserProfile,UserProfileForm,UserChangePassword
+from django.db.models import Q
+import json
 
 
 # Create your views here.
@@ -77,7 +79,17 @@ def Deleteuser(request,my_id):
 
 def Dashbord(request):
     if request.user.is_authenticated:
-        return render(request,'dashbord.html')
+        username=request.user.id
+       
+        alldata=UserDliveryAddress.objects.filter(user=username)
+        count=UserDliveryAddress.objects.filter(user=username).count()
+        print(count)
+        # skills = UserOrder.objects.all().prefetch_related('userprodectitems_set')
+        # print(skills)
+        idd=UserProdectitems.objects.filter(userorder__user=username)
+        
+        
+        return render(request,'dashbord.html',{'alldata':alldata,'idd':idd,'count':count})
     else:
         return HttpResponseRedirect('/login/')
 

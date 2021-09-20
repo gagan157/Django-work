@@ -44,14 +44,10 @@ class EditUserProfile(UserChangeForm):
         } 
 
 
-# class UserOrderForm(forms.ModelForm):
-#     class Meta:
-#         model = UserOrder
-#         fields = ['P_code','P_name','P_price','P_qty']
 
 
 class ProductAndAddresForm(forms.ModelForm):
-    productitems = forms.CharField(widget=forms.TextInput(attrs={'id':'itemjson'}))
+    productitems = forms.CharField(widget=forms.HiddenInput(attrs={'id':'itemjson'}))
     class Meta:        
         model = UserDliveryAddress
         fields = ['productitems','Full_name',

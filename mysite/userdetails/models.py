@@ -29,25 +29,21 @@ class CommonFields(models.Model):
 
 class UserOrder(CommonFields):   
     P_total = models.IntegerField(null=True)
+    P_item = models.CharField(max_length=2000,default='')
     P_orderdate = models.DateTimeField(default=datetime.datetime.now)
     
     def __str__(self) :
-        return str(self.id)+' || '+self.Track_id
+        return str(self.id)+' || '+self.Track_id + ' || ' +str(self.user)
 
-
-class ProductItems(CommonFields):
+class UserProdectitems(models.Model):
     userorder = models.ForeignKey(UserOrder,on_delete=models.CASCADE,null=True)
-    user = None
-    Track_id = None
-    Full_name=None    
-    P_code = models.CharField(max_length=500,default='')   
-    P_name = models.CharField(max_length=900,default='')
-    P_price = models.IntegerField(null=True)
+    Track_id = models.CharField(max_length=900,default='') 
+    P_name = models.CharField(max_length=1000)
     P_qty = models.IntegerField(null=True)
+    P_price = models.IntegerField(null=True)
 
-    def __str__(self) :
+    def __str__(self):
         return self.P_name
-
 
 class UserDliveryAddress(UserOrder):    
     D_address1 = models.CharField(max_length=1500)
@@ -58,7 +54,7 @@ class UserDliveryAddress(UserOrder):
     Pin_code = models.CharField(max_length=100)
 
     def __str__(self) :
-        return self.Phone
+        return str(self.user)
 
 class UserPaymentMethod(models.Model):
     P_Method = (

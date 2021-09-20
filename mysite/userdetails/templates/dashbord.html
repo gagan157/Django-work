@@ -8,48 +8,107 @@
 
 <div class="container my-4">
     <div class="row">
-        <div class="col-md-4 stretch-card grid-margin mybox">
+        <div class="col-md-4 stretch-card grid-margin ">
           <div class="card bg-gradient-danger card-img-holder text-white crdholdr">
             <div class="card-body mycard">
               <!-- <img src="../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"> -->
-              <h4 class="font-weight-normal mb-3">Your Orders<i class="mdi mdi-chart-line mdi-24px float-right"></i>
+              <h4 class="font-weight-normal mb-3">Total Orders<i class="mdi mdi-chart-line mdi-24px float-right"></i>
+              </h4>
+              <h2 class="mb-5">{{count}}</h2>
+              <h6 class="card-text">Increased by 60%</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 stretch-card grid-margin ">
+          <div class="card bg-gradient-danger card-img-holder text-white crdholdr">
+            <div class="card-body mycard">
+              <!-- <img src="../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"> -->
+              <h4 class="font-weight-normal mb-3">Complete Orders<i class="mdi mdi-chart-line mdi-24px float-right"></i>
               </h4>
               <h2 class="mb-5">0</h2>
               <h6 class="card-text">Increased by 60%</h6>
             </div>
           </div>
         </div>
-      </div>
-    
-      <div class="row my-4">
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small>3 days ago</small>
-              </div>
-              <p class="mb-1">Some placeholder content in a paragraph.</p>
-              <small>And some small print.</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
-              <p class="mb-1">Some placeholder content in a paragraph.</p>
-              <small class="text-muted">And some muted small print.</small>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
-              <p class="mb-1">Some placeholder content in a paragraph.</p>
-              <small class="text-muted">And some muted small print.</small>
-            </a>
+        <div class="col-md-4 stretch-card grid-margin ">
+          <div class="card bg-gradient-danger card-img-holder text-white crdholdr">
+            <div class="card-body mycard">
+              <!-- <img src="../assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image"> -->
+              <h4 class="font-weight-normal mb-3">Pending Orders<i class="mdi mdi-chart-line mdi-24px float-right"></i>
+              </h4>
+              <h2 class="mb-5">0</h2>
+              <h6 class="card-text">Increased by 60%</h6>
+            </div>
           </div>
-      </div>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="list-group">          
       
+            {% for data in alldata %}          
+            
+              <a href="#" class="list-group-item list-group-item-action active my-3" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{data.user}} || {{data.Track_id}}</h5>
+                <small>{{data.P_orderdate}}</small>
+                <!-- <small>{{data.P_total}}</small> -->
+              
+              </div>
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Status</h5>
+                <small>Pending</small>                
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Total Products</h5>
+                <small>{{data.P_total}}</small>                
+            </div>
+            </a>
+            <li class="list-group-item list-group-item-primary">Address</li>
+            
+            
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item flex-fill"><b>Full Name</b></li>
+              <li class="list-group-item flex-fill"><b>Phone</b></li>
+              <li class="list-group-item flex-fill"><b>Address</b></li>
+              <li class="list-group-item flex-fill"><b>Country</b></li>
+              <li class="list-group-item flex-fill"><b>State</b></li>
+            </ul>
+            <ul class="list-group list-group-horizontal-sm">
+                <li class="list-group-item flex-fill">{{data.Full_name}}</li>
+                <li class="list-group-item flex-fill">{{data.Phone}}</li>
+                <li class="list-group-item flex-fill">{{data.D_address1}}</li>
+                <li class="list-group-item flex-fill">{{data.Country}}</li>
+                <li class="list-group-item flex-fill">{{data.State}}</li>
+                              
+            </ul>
+            
+            <li class="list-group-item list-group-item-primary">Product Items</li>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item flex-fill"><b>Product Name</b></li>
+              <li class="list-group-item flex-fill"><b>Qty</b></li>
+              <li class="list-group-item flex-fill"><b>Price</b></li>
+           
+            </ul>
+            {% for i in idd %}
+            {% if data.Track_id == i.Track_id %}
+            <ul class="list-group list-group-horizontal-sm">
+              <li class="list-group-item flex-fill">{{i.P_name}}</li>
+              <li class="list-group-item flex-fill">{{i.P_qty}}</li>
+              <li class="list-group-item flex-fill">{{i.P_price}}</li>              
+            </ul>          
+            {% endif %}
+            {% endfor %}
+            
+                   
+                        
+            {% endfor %}  
+        </div>
+    </div>
+     
 </div>
 
+
+{% endblock %}
+{% block script %}
+<script src="{% static 'userdetails/js/dashbord.js' %}"></script>
 {% endblock %}

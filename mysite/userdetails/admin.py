@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile,UserOrder,UserPaymentMethod,UserDliveryAddress,ProductItems
+from .models import UserProfile,UserOrder,UserPaymentMethod,UserDliveryAddress,UserProdectitems
 from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
@@ -14,10 +14,9 @@ UserAdmin.list_display = ('id','username','first_name','last_name','email','is_s
 class UserOrderDetail(admin.ModelAdmin):
     list_display=('user','Track_id','P_orderdate','id')
 
-
-@admin.register(ProductItems)
-class UserOrderDetail(admin.ModelAdmin):
-    list_display=('userorder','P_name','P_qty','P_price','id')
+@admin.register(UserProdectitems)
+class UserProductDetail(admin.ModelAdmin):
+    list_display=('userorder','Track_id','P_name','P_qty','P_price','id')
 
 
 

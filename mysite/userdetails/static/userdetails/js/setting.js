@@ -18,6 +18,7 @@ console.log('setting')
 //       });
   
 //   });
+
 $(document).ready(function(){
     $("#ac").click(function(){
         $("#account").addClass('active')
