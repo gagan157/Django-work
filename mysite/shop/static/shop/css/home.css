@@ -3,7 +3,9 @@
     height: 200px; 
     object-fit: cover; 
     transition:width,height 2s; } 
-   
+
+    
+
    .card{ width:18rem; 
      margin: auto; 
      cursor: pointer; 
@@ -36,6 +38,8 @@
  .card-body{
    text-align: center;
  }
+
+
  
      @keyframes fit { 
        from {width: 0px; } 

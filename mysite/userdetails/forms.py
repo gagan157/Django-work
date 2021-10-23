@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import widgets
 from .models import UserProfile,UserDliveryAddress
 from django.contrib.auth.forms import PasswordChangeForm,UserChangeForm
 from django.contrib.auth.models import User
@@ -54,4 +55,12 @@ class ProductAndAddresForm(forms.ModelForm):
         'D_address1','D_address2','Phone','Country',
         'State','Pin_code']
         labels = {'D_address1':'Address1','D_address2':'Address2'}
-        
+        widgets={
+            'Full_name':forms.TextInput(attrs={'class': 'form-control'}),
+            'D_address1':forms.TextInput(attrs={'class': 'form-control'}),
+            'D_address2':forms.TextInput(attrs={'class': 'form-control'}),
+            'Phone':forms.TextInput(attrs={'class': 'form-control'}),
+            'Country':forms.TextInput(attrs={'class': 'form-control'}),
+            'State':forms.TextInput(attrs={'class': 'form-control'}),
+            'Pin_code':forms.TextInput(attrs={'class': 'form-control'}),
+            }

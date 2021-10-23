@@ -9,7 +9,16 @@ $(function () {
          
     })
 })   
-var crt = JSON.parse(localStorage.getItem('cart'))
+if(localStorage.getItem('cart')==null){
+    var cart=[]
+}
+else{
+    cart=JSON.parse(localStorage.getItem('cart'))
+    navitem(cart)
+  
+    
+}
+
 // console.log(crt)
 
 // crt.forEach(function(element) {
@@ -20,7 +29,7 @@ var crt = JSON.parse(localStorage.getItem('cart'))
 //        console.log(pname,pqty,pprice)
 //     }
 // })
-navitem(crt)
+
 function navitem(crt) {   
     var popStr = "";        
             popStr = popStr + "<h5> Cart for your items in my shopping cart </h5><div class='mx-2 my-2'>";

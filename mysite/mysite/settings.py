@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig',
     'userdetails.apps.UserdetailsConfig',
     'usersignuplogin.apps.UsersignuploginConfig',
     'shop.apps.ShopConfig',   
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',  
     'blog',
+    'rest_framework',
+    
 
 ]
 

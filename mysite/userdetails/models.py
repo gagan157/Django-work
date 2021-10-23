@@ -27,15 +27,24 @@ class CommonFields(models.Model):
     class Meta:
         abstract = True
 
-class UserOrder(CommonFields):   
+class UserOrder(CommonFields):  
+    P_status = (
+       
+        ('Pending', 'Pending'),
+        ('Out Of Dilivery', 'Out Of Dilivery'),
+        ('Order delivered', 'Order delivered'),
+        
+    ) 
     P_total = models.IntegerField(null=True)
     P_item = models.CharField(max_length=2000,default='')
     P_orderdate = models.DateTimeField(default=datetime.datetime.now)
+    Status = models.CharField(max_length=500,choices=P_status,default='Pending')
     
     def __str__(self) :
         return str(self.id)+' || '+self.Track_id + ' || ' +str(self.user)
 
 class UserProdectitems(models.Model):
+    
     userorder = models.ForeignKey(UserOrder,on_delete=models.CASCADE,null=True)
     Track_id = models.CharField(max_length=900,default='') 
     P_name = models.CharField(max_length=1000)

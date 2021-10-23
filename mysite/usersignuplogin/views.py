@@ -23,7 +23,7 @@ def Sign_up(request):
                 print(userid)
                 user_detail=UserProfile(user=userid,Username=username)                
                 user_detail.save()
-                messages.success(request,'Account sign up sucessfully')
+                messages.success(request,'Account Create sucessfully')
                 return HttpResponseRedirect('/login/')
         else:
             form=SignUpForm()        
